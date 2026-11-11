@@ -5,8 +5,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
-// TODO (Feature 3):               import java.util.concurrent.Semaphore;
-
+import java.util.concurrent.Semaphore;
 // ANSI Color Codes for enhanced terminal output (same as Assignment 1)
 class Colors {
     public static final String RESET = "\u001B[0m";
@@ -144,7 +143,8 @@ class ReadyQueue {
 // Feature 1: Protect list and map with the same lock.
 private final ReentrantLock queueLock = new ReentrantLock();
 
-    // TODO Feature 3: declare the counting semaphore that counts the processes waiting in the ready queue here
+// Feature 3: Count processes available in the ready queue.
+private final Semaphore availableProcesses = new Semaphore(0);
 
     // Add a process to the ready queue (new process, or a process that did not finish its quantum)
     public void add(Process process) {
@@ -158,14 +158,23 @@ try {
     queueLock.unlock();
 }
 
-        // TODO Feature 3: signal that one more process is available in the queue
+// Feature 3: Signal that a process is available in the queue.
+availableProcesses.release();
 
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + Colors.RESET +
                 Colors.BLUE + " (Priority: " + process.getPriority() + ") added to ready queue" + Colors.RESET +
                 " │ Remaining: " + Colors.YELLOW + process.getRemainingTime() + "ms" + Colors.RESET +
                 " of " + process.getBurstTime() + "ms");
     }
-
+// Feature 3: Wait until a process is available instead of busy waiting.
+    public Thread take() throws InterruptedException {
+        availableProcesses.acquire();
+        return poll();
+    }
+    // Feature 3: Wake up waiting CPUs when all processes finish.
+    public void wakeWaitingCPUs(int cpuCount) {
+        availableProcesses.release(cpuCount);
+    }
     // Remove and return the thread at the head of the queue (or null if the queue is empty)
    public Thread poll() {
     // Feature 1: Protect checking, reading, and removing the queue head.
@@ -316,18 +325,18 @@ class CpuWorker extends Thread {
     public void run() {
         while (SharedStats.getCompletedProcessCount() < SharedStats.totalProcesses) {
 
-            // TODO Feature 3: replace this polling loop by a blocking wait on the counting semaphore
-            Thread thread = readyQueue.poll();
+            // Feature 3: Wait for a process without busy waiting.
+            Thread thread;
+            try {
+                thread = readyQueue.take();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+
+            // Exit when the last process has completed.
             if (thread == null) {
-                // ⚠️ BUSY WAITING: the CPU keeps checking an empty queue instead of sleeping until
-                // a process is available. It wastes CPU time and needs the "completed == total" test above to stop.
-                SharedStats.busyWaitPolls.incrementAndGet();      // (counted for the verification block)
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    return;
-                }
-                continue;
+                break;
             }
 
             Process process = readyQueue.processOf(thread);
@@ -347,8 +356,10 @@ class CpuWorker extends Thread {
                 readyQueue.add(process);         // not finished: back to the ready queue
             }
 
-            // TODO Feature 3: when the LAST process has completed, wake up the CPUs that are blocked on the
-            // semaphore so that they can terminate (otherwise they would wait forever!)
+           // Feature 3: Wake up all waiting CPUs after the last process finishes.
+            if (SharedStats.getCompletedProcessCount() == SharedStats.totalProcesses) {
+                readyQueue.wakeWaitingCPUs(SharedStats.totalCPUs);
+            }
         }
     }
 }

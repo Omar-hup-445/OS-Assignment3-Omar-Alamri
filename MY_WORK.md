@@ -199,16 +199,29 @@ I compiled the updated code into a new build folder and ran it. All verification
 
 ---
 
-### Entry 4 - [Date and Time]
+### Entry 4 - November 11, 2026, [Actual Time]
+
 **What I did**:
+
+Completed Part B: Reflection by answering all four questions.
 
 **Details**:
 
+- Explained what I learned about synchronization and race conditions.
+- Described the challenges I faced while implementing Feature 3.
+- Explained how I solved the compilation issue.
+- Discussed real-world examples of synchronization.
+- Reviewed my answers and connected them to my Java code.
+
 **Challenges**:
+
+Writing clear answers that connect synchronization concepts to my actual implementation.
 
 **Solution**:
 
-**Time spent**:
+I reviewed my code and the verification results to make my answers more specific and accurate.
+
+**Time spent**:Approximately 20 minutes of active work.
 
 ---
 
@@ -268,32 +281,36 @@ I compiled the updated code into a new build folder and ran it. All verification
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+My Answer:
 
+This assignment helped me understand why synchronization is important when multiple CPUs access shared data. I learned that a race condition can happen when two threads read and update the same value at the same time. I used ReentrantLock to protect the critical sections of the ready queue and shared statistics. I also learned why each lock should be released inside a finally block. I used a counting Semaphore to make CPUs wait for available processes instead of busy waiting. After testing my code, all verification values were correct, including 15 completed processes and 0 busy-waiting polls.
 ## Question 2: What was the most challenging part of this assignment?
 
 > 💡 **TIP:** Pick **one** specific challenge (understanding why the starter failed, choosing the lock granularity, the initial value of the semaphore, the shutdown of the CPUs, Git, the video) and say *why* it was hard.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+My Answer:
 
+The most challenging part for me was removing busy waiting in Feature 3. I replaced the polling loop with a semaphore, but the verification still showed a nonzero busy-waiting count. This was confusing because I could not find the code that increased the counter in my updated source file. I tried recompiling and running the Java file directly, but the problem continued. I suspected that an older compiled version of the program was still being used. Finally, I compiled the code into a separate build folder, and all the verification results became correct.
 ## Question 3: How did you overcome the challenges you faced?
 
 > 💡 **TIP:** Describe your method: reading the slides and the documentation, adding `System.out.println` to debug, running the program many times, re-reading the README, testing after each small change, asking for help.
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+My Answer:
 
+I worked on the assignment step by step instead of changing everything at once. I started by protecting the ready queue with ReentrantLock and testing the program several times. Next, I added separate locks to the shared statistics and checked the expected and observed values. When Feature 3 still showed busy-waiting polls, I searched the code for the counter update and reviewed my changes. I then compiled the Java file into a new folder and ran the program using the new compiled classes. The final test passed all four verification checks, which helped me confirm that my synchronization changes were working correctly.
 ## Question 4: Where can synchronization concepts be applied in real-world applications?
 
 > 💡 **TIP:** Use real applications you know (banking and money transfers, ticket or seat booking, a shared counter on a website, a print queue, a database) and connect each one to what you built here (shared data, critical section, lock or semaphore).
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+My Answer:
 
+Synchronization can be used in banking applications when multiple transactions update the same account balance. A mutex lock can protect the balance update to prevent incorrect results. It is also important in ticket booking systems to prevent two customers from booking the same seat at the same time. Another example is a printing system where multiple users send jobs to a shared print queue. A semaphore can make printer workers wait until a new job becomes available instead of checking the queue repeatedly. These examples are similar to my CPU scheduler because they use locks to protect shared data and semaphores to coordinate threads.
 ### Optional: What would you like to learn more about?
 
 [Any topics related to synchronization or operating systems that you're curious about?]

@@ -172,16 +172,30 @@
 
 ---
 
-### Entry 3 - [Date and Time]
+### Entry 3 - November 11, 2026, 6:25PM
+
 **What I did**:
+
+Implemented Feature 3 by replacing busy waiting with a counting semaphore.
 
 **Details**:
 
+- Added a Semaphore to the ReadyQueue with 0 initial permits.
+- Used release() when adding a process to the queue.
+- Used acquire() to make CPUs wait for available processes.
+- Added a method to wake waiting CPUs when all processes finish.
+- Tested the program and verified all expected values.
+
 **Challenges**:
+
+The busy-waiting counter was still showing a value greater than 0 after updating the code.
 
 **Solution**:
 
-**Time spent**:
+I compiled the updated code into a new build folder and ran it. All verification checks passed, and the busy-waiting counter became 0.
+
+**Time spent**:Approximately 45 minutes of active work.
+
 
 ---
 

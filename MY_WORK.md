@@ -111,6 +111,27 @@
 
 ## Example Entry (do not copy it, write your own)
 
+### Entry 1 - [November 2, 2026, 4:30 PM]
+**What I did**: Forked the repository, set my student ID, and ran the original starter
+
+**Details**:
+- Forked the starter repository and renamed it
+- Changed student ID on line 304 to my actual ID (441234567)
+- Ran the original program: 4 CPUs started, three of them picked `P1`, then `IllegalThreadStateException` and the watchdog stopped the program
+- Saved the output in a text file for Question 1
+- Committed and pushed: `Set my student ID: 441234567`
+**Challenges**: I did not understand why the same process was picked by three CPUs
+
+**Solution**: Read `ReadyQueue.poll()` again and found the `RaceWindow.pause()` between reading the head and removing it
+
+**Time spent**: 45 minutes
+
+---
+
+
+
+## Your Development Log
+
 ### Entry 1 - November 11, 2026, 2:00 PM
 **What I did**: Set up my repository, ran the starter, and implemented Feature 1.
 
@@ -130,31 +151,24 @@
 
 ---
 
-## Your Development Log
+### Entry 2 - November 11, 2026, 4:30 PM
 
-### Entry 1 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
-
----
-
-### Entry 2 - [Date and Time]
-**What I did**:
+**What I did**: Implemented Feature 2 and fixed the race conditions in shared statistics.
 
 **Details**:
+- Added three separate ReentrantLocks to protect the shared counters.
+- Used lock(), try/finally, and unlock() in the update methods and getters.
+- The first test showed incorrect context switch and service time values.
+- Recompiled the Java file and tested the updated code again.
+- Ran five tests and checked the results of each run.
+- All five tests showed 27 context switches, 15 completed processes, and 103012 ms total service time.
+- Busy waiting remained and will be fixed in Feature 3.
 
-**Challenges**:
+**Challenges**: The first test showed incorrect statistics, and the terminal displayed strange characters.
 
-**Solution**:
+**Solution**: Recompiled the updated Java file and adjusted the terminal settings so the numbers displayed correctly.
 
-**Time spent**:
+**Time Spent**: Approximately 25 minutes of active work.
 
 ---
 

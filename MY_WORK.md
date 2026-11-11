@@ -32,12 +32,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
- 
+| **Full Name** | Omar Alamri |
+| **Student ID** | 445350256 |
+| **University Email** | 445350256@std.psau.edu.sa |
+| **GitHub Username** | Omar-hup-445 |
+| **Repository Link** | https://github.com/Omar-hup-445/OS-Assignment3-Omar-Alamri |
 ---
 
 ## 🎥 Video Link
@@ -112,21 +111,22 @@
 
 ## Example Entry (do not copy it, write your own)
 
-### Entry 1 - [November 2, 2026, 4:30 PM]
-**What I did**: Forked the repository, set my student ID, and ran the original starter
+### Entry 1 - November 11, 2026, 2:00 PM
+**What I did**: Set up my repository, ran the starter, and implemented Feature 1.
 
 **Details**:
-- Forked the starter repository and renamed it
-- Changed student ID on line 304 to my actual ID (441234567)
-- Ran the original program: 4 CPUs started, three of them picked `P1`, then `IllegalThreadStateException` and the watchdog stopped the program
-- Saved the output in a text file for Question 1
-- Committed and pushed: `Set my student ID: 441234567`
+- Forked the starter repository and named it OS-Assignment3-Omar-Alamri.
+- Set my student ID to 445350256, then committed and pushed the change.
+- Ran the original starter and saved its output. Multiple CPUs selected P1, causing IllegalThreadStateException.
+- Added queueLock to ReadyQueue and protected add(), poll(), processOf(), and snapshot() using try/finally.
+- Tested Feature 1 five times. All 15 processes completed in each run without exceptions or watchdog messages, but statistics errors and busy waiting remained.
+- Committed and pushed Feature 1.
 
-**Challenges**: I did not understand why the same process was picked by three CPUs
+**Challenges**: After editing the code, I initially ran an old compiled version and saw the same queue errors.
 
-**Solution**: Read `ReadyQueue.poll()` again and found the `RaceWindow.pause()` between reading the head and removing it
+**Solution**: Recompiled SchedulerSimulationSync.java with javac before running it again.
 
-**Time spent**: 45 minutes
+**Time spent**: Approximately 30 minutes of active work.
 
 ---
 

@@ -41,7 +41,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link**: https://drive.google.com/file/d/1jSSdCb_kF3AEi1RXzVzFwW0R_qegz5IG/view?usp=sharing
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -199,7 +199,7 @@ I compiled the updated code into a new build folder and ran it. All verification
 
 ---
 
-### Entry 4 - November 11, 2026, [Actual Time]
+### Entry 4 - November 11, 2026, 9:25PM
 
 **What I did**:
 
@@ -225,7 +225,7 @@ I reviewed my code and the verification results to make my answers more specific
 
 ---
 
-### Entry 5 - November 11, 2026, [Actual Time]
+### Entry 5 - November 11, 2026, 9:57PM
 
 **What I did**:
 
@@ -248,49 +248,36 @@ Understanding how to explain a lost update step by step and connect the technica
 
 I reviewed the assignment instructions, compared my original and final verification results, and checked the synchronization methods in my code.
 
-**Time spent**:
-
-[Actual Duration]
-
-### Entry 5 - November 11, 2026, [Actual Time]
-
-**What I did**:
-
-Completed Part C: Technical Answers and the Summary section.
-
-**Details**:
-
-- Answered all four technical questions about synchronization.
-- Used my original starter and final verification results to explain race conditions.
-- Explained the critical sections and lock granularity choices in my Java code.
-- Described how the counting semaphore replaced busy waiting.
-- Explained the Producer-Consumer problem and deadlock prevention.
-- Completed the Summary section with concepts I understood and topics I need to study more.
-
-**Challenges**:
-
-Understanding how to explain a lost update step by step and connect the technical answers to my actual program output.
-
-**Solution**:
-
-I reviewed the assignment instructions, compared my original and final verification results, and checked the synchronization methods in my code.
-
-**Time spent**:
-
-[Actual Duration]
+**Time spent**:Approximately 35 minutes of active work.
 
 ---
 
-### Entry 6 - [Optional - Date and Time]
+### Entry 6 - November 12, 2026, 10:34 AM
+
 **What I did**:
+
+Recorded and uploaded the Assignment 3 demonstration video.
 
 **Details**:
 
+- Recorded a video explaining my synchronization assignment.
+- Introduced my name, student ID, and GitHub repository.
+- Explained Feature 1 using ReentrantLock to protect the ready queue.
+- Explained Feature 2 and my choice of separate locks for shared statistics.
+- Explained Feature 3 using a counting Semaphore to eliminate busy waiting.
+- Demonstrated the program execution and showed the verification results.
+- Showed my GitHub commit history.
+- Uploaded the video and added its link to MY_WORK.md.
+
 **Challenges**:
+
+Explaining all three synchronization features clearly within the required 2–3 minutes.
 
 **Solution**:
 
-**Time spent**:
+Organized the demonstration into short sections covering the code, execution results, synchronization concepts, and commit history.
+
+**Time spent**:Approximately 35 minutes of active work.
 
 ---
 
@@ -298,13 +285,20 @@ I reviewed the assignment instructions, compared my original and final verificat
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+
+**Total time spent on assignment**: Approximately 3 hours and 35 minutes of active work so far, excluding video preparation.
 
 **Most challenging part**:
 
+Removing busy waiting in Feature 3 because the program continued showing incorrect results even after I updated the code.
+
 **Most interesting learning**:
 
+Learning how mutex locks prevent race conditions and how a counting semaphore allows CPUs to wait without busy waiting.
+
 **What I would do differently next time**:
+
+I would compile the updated Java code into a clean build folder after each change and test each feature before moving to the next one.
 
 ---
 
@@ -356,16 +350,15 @@ My Answer:
 Synchronization can be used in banking applications when multiple transactions update the same account balance. A mutex lock can protect the balance update to prevent incorrect results. It is also important in ticket booking systems to prevent two customers from booking the same seat at the same time. Another example is a printing system where multiple users send jobs to a shared print queue. A semaphore can make printer workers wait until a new job becomes available instead of checking the queue repeatedly. These examples are similar to my CPU scheduler because they use locks to protect shared data and semaphores to coordinate threads.
 ### Optional: What would you like to learn more about?
 
-[Any topics related to synchronization or operating systems that you're curious about?]
+N/A
 
 ### Optional: How confident do you feel about synchronization concepts now?
 
-[Beginner / Intermediate / Confident. What do you understand well? What needs more practice?]
+N/A
 
 ### Optional: Feedback on the assignment
 
-[Any comments? Was it helpful? Too easy or hard? Suggestions?]
-
+N/A
 ---
 
 # Part C: Technical Answers (0.5 mark)
